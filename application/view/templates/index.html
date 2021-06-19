@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="a"> 
-        <h1 href="http://127.0.0.1:5000/">VUTTR</h1>
+        <h1 ><a href="http://127.0.0.1:5000/">VUTTR</a></h1>
         <h2>Very Useful tools to Remember</h2>
     </div>
 
@@ -34,7 +34,7 @@
             <h2>Add new Tool</h2>
 
             <div id="botao_fechar">
-                <button onclick="fechar_form()"> X </button>
+                <button onclick="fechar_form()"> Fechar Add Tool X </button>
             </div>
         </div>
 
@@ -66,17 +66,19 @@
 
     
     {%for i in tool_list%}
-        <div id="cards">
-            <a href="{{i.link}}">{{i.titulo}}</a>
+        <div id="cards"> 
+            <a class="titulo" href="{{i.link}}">{{i.titulo}}</a>
             <a class="remover"  href="{{ url_for('excluir', id = i.id) }}"> <b>X</b></a>
-
         </div>
-        <p>Descrição: {{i.descricao}}</p>
+         
+            <p>Descrição: {{i.descricao}}</p>
 
         {% for tags in i.tags%}
             <div id="tags">
                 <p>#{{tags}}</p>
             </div>
+
+        </div>
         {%endfor%}
     
     {%endfor%}
