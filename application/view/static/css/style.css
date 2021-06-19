@@ -53,4 +53,20 @@ div#cards{
     margin: 2% 0 2% 0;
 }
 
+div#POST{
+    background-color: #a59e9e;
+    border-style: solid;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+div#tags{
+    display: inline-block;
+    font-weight: bold;
+    font-size: 17px;
+}
+
 

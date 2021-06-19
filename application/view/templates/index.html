@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <title>VUTTR</title>
 </head>
+
 <body>
-    <div class="a"> 
-        <h1 ><a href="http://127.0.0.1:5000/">VUTTR</a></h1>
+    <div class="a">
+        <h1><a href="http://127.0.0.1:5000/">VUTTR</a></h1>
         <h2>Very Useful tools to Remember</h2>
     </div>
 
@@ -17,18 +19,19 @@
         <div>
             <form action="{{ url_for('buscar') }}" methods='GET'>
                 <label for="search"></label>
-                <input type="search"  placeholder="Search" id="search", name="search" value="{{ search if search != None else '' }}">
+                <input type="search" placeholder="Search" id="search" , name="search"
+                    value="{{ search if search != None else '' }}">
                 <input type="checkbox" name="only_tag" id="only_tag" value="only_tag">
                 <label for="only_tag">search in tags only</label>
             </form>
         </div>
         <div>
             <button onclick="abrir_form()">+ Add</button>
-            
+
         </div>
-        
+
     </div>
-    
+
     <div id=abrir_form>
         <div id=menu_add>
             <h2>Add new Tool</h2>
@@ -58,56 +61,59 @@
             </div>
 
             <div id="botao_form">
-            <button type="submit">Add Tool</button>
+                <button type="submit">Add Tool</button>
             </div>
-            
+
         </form>
     </div>
 
-    
+
     {%for i in tool_list%}
-        <div id="cards"> 
+    <div id="POST">
+        <div id="cards">
             <a class="titulo" href="{{i.link}}">{{i.titulo}}</a>
-            <a class="remover"  href="{{ url_for('excluir', id = i.id) }}"> <b>X</b></a>
+            <a class="remover" href="{{ url_for('excluir', id = i.id) }}"> <b>X</b></a>
         </div>
-         
-            <p>Descrição: {{i.descricao}}</p>
+        <article id="tags">
+            <p>{{i.descricao}}</p>
 
-        {% for tags in i.tags%}
-            <div id="tags">
+            <div >
+                {% for tags in i.tags%}
                 <p>#{{tags}}</p>
-            </div>
 
-        </div>
+        </article>
         {%endfor%}
-    
+    </div>
+
     {%endfor%}
+    </div>
 
 </body>
+
 </html>
 
 <script>
-    function removerpost(id){
-    popRemover = window.document.getElementById(id);
-    popRemover.style.visibility = "visible";
+    function removerpost(id) {
+        popRemover = window.document.getElementById(id);
+        popRemover.style.visibility = "visible";
 
-    janela = window.document.getElementById('nome_principal');
-    janela.style.opacity = '0.5';
-    janela = window.document.getElementById('formulario-busca-tools');
-    janela.style.opacity = '0.5';
-    janela = window.document.getElementsByClassName('tools_card');
-    for (var i = 0; i < janela.length; i++) {
-        janela[i].style.opacity = '0.5';
+        janela = window.document.getElementById('nome_principal');
+        janela.style.opacity = '0.5';
+        janela = window.document.getElementById('formulario-busca-tools');
+        janela.style.opacity = '0.5';
+        janela = window.document.getElementsByClassName('tools_card');
+        for (var i = 0; i < janela.length; i++) {
+            janela[i].style.opacity = '0.5';
+        }
     }
-}
-function abrir_form(){
-    janela = window.document.getElementById("abrir_form");
-    janela.style.display = "block";
-    
-}
+    function abrir_form() {
+        janela = window.document.getElementById("abrir_form");
+        janela.style.display = "block";
 
-function fechar_form(){
-    janela = window.document.getElementById("abrir_form");
-    janela.style.display = "None";
-}
+    }
+
+    function fechar_form() {
+        janela = window.document.getElementById("abrir_form");
+        janela.style.display = "None";
+    }
 </script>
