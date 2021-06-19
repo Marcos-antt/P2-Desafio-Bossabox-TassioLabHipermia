@@ -8,16 +8,104 @@
     <title>VUTTR</title>
 </head>
 <body>
-    <center><h1>VUTTR</h1></center>
-    <center><h2>Very Useful Tools to Remember</h2></center>
-    {%for i in tool_list%}
-
-    <div>
-        <p>
-            {{i.id,i.titulo, i.descricao, i.link, i.tags}}
-        </p>
+    <div class="a"> 
+        <h1 href="http://127.0.0.1:5000/">VUTTR</h1>
+        <h2>Very Useful tools to Remember</h2>
     </div>
 
+    <div id="menu_form">
+        <div>
+            <form action="{{ url_for('buscar') }}" methods='GET'>
+                <label for="search"></label>
+                <input type="search"  placeholder="Search" id="search", name="search" value="{{ search if search != None else '' }}">
+                <input type="checkbox" name="only_tag" id="only_tag" value="only_tag">
+                <label for="only_tag">search in tags only</label>
+            </form>
+        </div>
+        <div>
+            <button onclick="abrir_form()">+ Add</button>
+            
+        </div>
+        
+    </div>
+    
+    <div id=abrir_form>
+        <div id=menu_add>
+            <h2>Add new Tool</h2>
+
+            <div id="botao_fechar">
+                <button onclick="fechar_form()"> X </button>
+            </div>
+        </div>
+
+        <form action="{{ url_for('adicionar') }}" method='POST'>
+
+            <div>
+                <label for="form_titulo">Title Name:</label>
+                <input type="text" name="form_titulo" id="form_titulo">
+            </div>
+            <div>
+                <label for="form_link">Tool Link:</label>
+                <input type="url" name="form_link" id="form_link">
+            </div>
+            <div>
+                <label for="form_desc">Tool Description:</label>
+                <textarea name="form_descricao" id="form_descricao" cols="40" rows="5"></textarea>
+            </div>
+            <div>
+                <label for="form_tags">Tags:</label>
+                <textarea name="form_tags" id="form_tags" cols="40" rows="2"></textarea>
+            </div>
+
+            <div id="botao_form">
+            <button type="submit">Add Tool</button>
+            </div>
+            
+        </form>
+    </div>
+
+    
+    {%for i in tool_list%}
+        <div id="cards">
+            <a href="{{i.link}}">{{i.titulo}}</a>
+            <a class="remover"  href="{{ url_for('excluir', id = i.id) }}"> <b>X</b></a>
+
+        </div>
+        <p>Descrição: {{i.descricao}}</p>
+
+        {% for tags in i.tags%}
+            <div id="tags">
+                <p>#{{tags}}</p>
+            </div>
+        {%endfor%}
+    
     {%endfor%}
+
 </body>
 </html>
+
+<script>
+    function removerpost(id){
+    popRemover = window.document.getElementById(id);
+    popRemover.style.visibility = "visible";
+
+    janela = window.document.getElementById('nome_principal');
+    janela.style.opacity = '0.5';
+    janela = window.document.getElementById('formulario-busca-tools');
+    janela.style.opacity = '0.5';
+    janela = window.document.getElementsByClassName('tools_card');
+    for (var i = 0; i < janela.length; i++) {
+        janela[i].style.opacity = '0.5';
+    }
+}
+function abrir_form(){
+    janela = window.document.getElementById("abrir_form");
+    janela.style.display = "block";
+    
+}
+
+function fechar_form(){
+    janela = window.document.getElementById("abrir_form");
+    janela.style.display = "None";
+}
+</script>

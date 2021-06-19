@@ -16,11 +16,27 @@ body{
  
 }
 
-.menu_busca{
+div#menu_form{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 2% 0 2% 0;
+}
+
+div#botao_fechar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2% 0 2% 0;
+
+}
+
+div#menu_add{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
 }
 
 .titulo{

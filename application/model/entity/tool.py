@@ -1,50 +1,49 @@
-class tool:
-    def __init__(self, id:int, titulo: str, descricao: str, link: str, tags: list):
-        self._id = id
-        self._titulo = titulo
-        self._link = link
-        self._descricao = descricao
-        self._tags = tags
+class Tool:
+    def __init__(self, id:int, titulo: str, link: str, descricao: str, tags: list):
+        self.__id = id
+        self.__titulo = titulo
+        self.__link = link
+        self.__descricao = descricao
+        self.__tags = tags
     
 
     @property
     def id(self):
-        return self._id
+        return self.__id
     
     @id.setter
     def id(self, value):
-        self._id = value
-    
-        
+        self.__id = value
+           
     @property
     def titulo(self):
-        return self._titulo
+        return self.__titulo
     
     @titulo.setter
     def titulo(self, value):
-        self._titulo = value
+        self.__titulo = value
+    @property
+    def link(self):
+        return self.__link
+    
+    @link.setter
+    def link(self, value):
+        self.__link = value
 
     @property
     def descricao(self):
-        return self._descricao
+        return self.__descricao
 
     @descricao.setter
     def descricao(self, value):
         self.descricao = value
 
-    @property
-    def link(self):
-        return self._link
-    
-    @link.setter
-    def link(self, value):
-        self._link = value
     
     @property
     def tags(self):
-        return self._tags
+        return self.__tags
     
     @tags.setter
     def tags(self, value):
-        self._tags = value
-    
+        self.__tags = value
+
